@@ -1,0 +1,34 @@
+from numpy import sum
+
+with open('input.txt') as f:
+    lines=f.readlines()
+    base_score=0
+    outcome=0
+    game_number=len(lines)
+    clean=[]
+    for i in range(0,game_number):
+        clean.append(lines[i].strip())
+        start,answer = [list(d) for d in zip(*[[str(i) for i in c.split(' ')] for c in clean])]
+#        if (start[i]=='A' and answer[i]=='Y') or (start[i]=='B' and answer[i]=='Z') or (start[i]=='C' and answer[i]=='X'):
+#            outcome+=6
+#        elif (start[i]=='A' and answer[i]=='X') or (start[i]=='B' and answer[i]=='Y') or (start[i]=='C' and answer[i]=='Z'):
+#            outcome+=3
+#        else:
+#            outcome+=0
+        if (start[i]=='A' and answer[i]=='X') or (start[i]=='C' and answer[i]=='Y') or (start[i]=='B' and answer[i]=='Z'):
+            base_score+=3
+        elif (start[i]=='C' and answer[i]=='X') or (start[i]=='B' and answer[i]=='Y') or (start[i]=='A' and answer[i]=='Z'):
+            base_score+=2
+        else:
+            base_score+=1
+        if answer[i] == 'X':
+            outcome+=0
+        elif answer[i]=='Y':
+            outcome+=3
+        else:
+            outcome+=6
+
+    final_score=base_score+outcome
+    print (base_score)
+    print (outcome)
+    print (final_score)
