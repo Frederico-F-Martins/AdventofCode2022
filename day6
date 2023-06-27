@@ -1,0 +1,42 @@
+from numpy import sum
+import itertools
+
+def uniqueCharacters(str):
+    for i in range(len(str)):
+        for j in range(i + 1,len(str)):
+            if(str[i] == str[j]):
+                return False;
+    return True;
+
+
+with open('input.txt') as f:
+    lines=f.readlines()
+    print(lines)
+    print(len(lines[0]))
+    four_chars=[]
+    start=0
+#    for i in range(0, len(lines[0])-3):
+#        four_chars.append(lines[0][start:start+4])
+#        start+=1
+#    print(len(four_chars[1]))
+    for i in range(0, len(lines[0])-13):
+        four_chars.append(lines[0][start:start+14])
+        start+=1
+#    for i in range(0,len(four_chars)):
+#        for j in range(0,len(four_chars[i])):
+#            str=four_chars[i]
+#            if four_chars[i][j] in str.replace(four_chars[i][j],''):
+#                pass
+#            else:
+#                print(four_chars.index(four_chars[i]))
+
+    for l in range(0,len(four_chars)):
+        str=four_chars[l]
+        if(uniqueCharacters(str)):
+            print("The String ", str," has all unique characters");
+            first_start_of_packet=four_chars.index(four_chars[l])
+            print(first_start_of_packet)
+            print(first_start_of_packet+14)
+            break
+        else:
+            pass
