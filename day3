@@ -1,0 +1,86 @@
+with open('input.txt') as f:
+    lines=f.readlines()
+    first=[]
+    second=[]
+    dupes=[]
+    ordnumbers=[]
+    prios=0
+    mid=[]
+    for i in range(0,len(lines)):
+        slice_one=slice(0, len(lines[i])//2)
+        slice_two=slice(len(lines[i])//2, len(lines[i]))
+        first.append(lines[i][slice_one])
+        second.append(lines[i][slice_two])
+    for i in range(0,len(lines)):
+        dupes.append(set(first[i]).intersection(set(second[i])))
+    for i in range(0, len(dupes)):
+        mid.append(str(dupes[i]))
+    removetable=str.maketrans("","","{'}")
+    dupi=[s.translate(removetable) for s in mid]
+#    print(dupi)
+    
+    for i in range (0, len(dupi)):
+        ordnumbers.append(ord(dupi[i]))
+#    print(ordnumbers)
+    for i in range(0,len(ordnumbers)):
+        if int(ordnumbers[i]) >= 97:
+            prios+=(int(ordnumbers[i])-96)
+        else:
+            prios+=(int(ordnumbers[i])-38)
+    print('The sum of prios is: ' + str(prios)+'.')
+
+#    first, second = [list(d) for d in zip(*[[str(i) for i in c.slice()]for c in lines])]
+print(first[1])
+print(second[1])
+
+##### second exercise #####
+with open('input.txt') as f:
+    commander=[]
+    avg=[]
+    lazy=[]
+    for i in range(0,len(lines),3):
+        commander.append(lines[i])
+    for i in range(1,len(lines),3):
+        avg.append(lines[i])
+    for i in range(2,len(lines),3):
+        lazy.append(lines[i])
+    badge_bad=[]
+    badge_good=[]
+
+    for i in range(0,len(avg)):
+        badge_bad.append(set(commander[i]).intersection(set(avg[i])))
+    middlef=[]
+    removetable=str.maketrans("","","{'}, n\ \n")
+
+    for i in range(0, len(badge_bad)):
+        middlef.append(str(badge_bad[i]))
+    print(middlef)
+    cleanf=[s.translate(removetable) for s in middlef]
+    print(cleanf)
+    for i in range(0,len(lazy)):
+        badge_good.append(set(cleanf[i]).intersection(set(lazy[i])))
+    middles=[]
+    for i in range(0, len(badge_good)):
+        middles.append(str(badge_good[i]))
+    cleans=[s.translate(removetable) for s in middles]
+    print(cleans)
+    indices=[i for i in range (len(cleans)) if cleans[i]=='set()']
+    print (indices)
+    for i in indices:
+        cleans[i]='n'
+    print (cleans)
+
+badge_numbers=[]
+badgeprios=0    
+for i in range (0, len(cleans)):
+    badge_numbers.append(ord(cleans[i]))
+
+print(ordnumbers)
+for i in range(0,len(badge_numbers)):
+    if int(badge_numbers[i]) >= 97:
+        badgeprios+=(int(badge_numbers[i])-96)
+    else:
+        badgeprios+=(int(badge_numbers[i])-38)
+print('The sum of badge prios is: ' + str(badgeprios)+'.')
+
+print(len(lines))
