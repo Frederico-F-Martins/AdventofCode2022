@@ -1,0 +1,30 @@
+with open('input.txt') as f:
+#    lines=f.readlines()
+    """ first_elf, second_elf_b=[list(d) for d in zip(*[[str(i) for i in c.split(',')] for c in lines])]
+    second_elf=[]
+    containing_pairs=0
+    for i in range(0,len(second_elf_b)):
+        second_elf.append(second_elf_b[i].strip()) """
+
+    data= f.read().splitlines()
+"""    pairs = 0
+    for s in data:
+        ranges = s.split(",")
+        l = ranges[0].split("-")
+        u = ranges[1].split("-")
+        if int(l[0]) >= int(u[0]) and int(l[1]) <= int(u[1]):
+            pairs += 1
+        elif int(u[0]) >= int(l[0]) and int(u[1]) <= int(l[1]): pairs += 1 """
+
+#    print(pairs)
+
+#### exercise 2: ####
+
+pairs = 0
+for s in data:
+    ranges = s.split(",")
+    l = ranges[0].split("-")
+    u = ranges[1].split("-")
+    if int(l[1]) >= int(u[0]) and int(l[0]) <= int(u[1]): #or int(l[0]) <= int(u[1]):
+        pairs += 1
+print(pairs)
